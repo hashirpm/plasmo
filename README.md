@@ -1,7 +1,6 @@
 # plasmo
 
-A new Flutter project.
-
+Plasmo is a flutter application for the purpose of connecting COVID-19 patients and the patients recently recovered from COVID-19 willing to donate their plasma for effective treatment.
 ## Getting Started
 
 This project is a starting point for a Flutter application.
