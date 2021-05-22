@@ -16,6 +16,8 @@ class _BannerScreenState extends State<BannerScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
+      
       appBar: AppBar(
         elevation: 0,
         title: Center(
@@ -44,17 +46,39 @@ class _BannerScreenState extends State<BannerScreen> {
         ),
         backgroundColor: Colors.white,
       ),
+      floatingActionButton:Padding(
+        padding: EdgeInsets.all(100),
+              child: FloatingActionButton.extended(onPressed: (){
+        Navigator.of(context)
+                        .pushReplacementNamed(BottomNavbar.routeName);
+        }, label: Text('Skip'),icon: Icon(Icons.arrow_forward),
+    backgroundColor: Colors.greenAccent,),
+      ),
+  floatingActionButtonLocation:    
+      FloatingActionButtonLocation.miniCenterDocked,
       body: Center(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text('This is Banner'),
-            ElevatedButton(
-                onPressed: () {
-                  Navigator.of(context)
-                      .pushReplacementNamed(BottomNavbar.routeName);
-                },
-                child: Text('Skip'))
+          children: [Image(
+        
+    
+                            
+                image: AssetImage('assets/images/covid-banner.png'),
+
+                  fit: BoxFit.fill,
+                  alignment: Alignment.center,
+                  
+                
+
+          )
+             
+           // Text('This is Banner'),
+            // ElevatedButton(
+            //     onPressed: () {
+            //       Navigator.of(context)
+            //           .pushReplacementNamed(BottomNavbar.routeName);
+            //     },
+            //     child: Text('Skip'))
           ],
         ),
       ),
