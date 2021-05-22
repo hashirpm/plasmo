@@ -1,56 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:plasmo/screens/banner_screen.dart';
-import 'package:plasmo/screens/bottom_navbar.dart';
-import 'package:plasmo/screens/home_screen.dart';
-import 'package:plasmo/screens/signup_screen.dart';
-import 'package:plasmo/services/firebase/auth_services.dart';
 import 'package:plasmo/utilities/constants.dart';
 
-class LoginScreen extends StatefulWidget {
-  static const routeName='/login';
+class SignUp extends StatefulWidget {
+  static const routeName='/signup';
   @override
-  _LoginScreenState createState() => _LoginScreenState();
+  _SignUpState createState() => _SignUpState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
-  var _load=false;
-    TextEditingController _emailCtrl = TextEditingController();
-  TextEditingController _passwordCtrl = TextEditingController();
+class _SignUpState extends State<SignUp> {
   bool _rememberMe = false;
-  void googleSignIn() async {
-    bool signedIn = await AuthServices.signInWithGoogle();
-    if (signedIn) {
-      print("Logged in");
-   
-      // route to home
-      Navigator.of(context).pushReplacementNamed(BannerScreen.routeName);
-    }
-  }
- void logIn() async {
-    setState(() {
-  _load=true;
-    });
 
-   
-    var authInfo =
-        await AuthServices.logIn(_emailCtrl.text, _passwordCtrl.text);
-
-
-    setState(() {
-      if (authInfo['email'] && authInfo['password']) {
-        Navigator.of(context).pushReplacementNamed(BannerScreen.routeName);
-      }
-    _load=false;
-    });
- }
-   
-  Widget _buildEmailTF() {
+  Widget _buildName() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Text(
-          'Email',
+          'Name',
           style: kLabelStyle,
         ),
         SizedBox(height: 10.0),
@@ -60,7 +26,6 @@ class _LoginScreenState extends State<LoginScreen> {
           height: 60.0,
           child: TextField(
             keyboardType: TextInputType.emailAddress,
-            controller: _emailCtrl,
             style: TextStyle(
               color: Colors.white,
               fontFamily: 'OpenSans',
@@ -69,11 +34,115 @@ class _LoginScreenState extends State<LoginScreen> {
               border: InputBorder.none,
               contentPadding: EdgeInsets.only(top: 14.0),
               prefixIcon: Icon(
-                Icons.email,
+                Icons.person,
                 color: Colors.white,
               ),
-              
-              hintText: 'Enter your Email',
+              hintText: 'Enter your Name',
+              hintStyle: kHintTextStyle,
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildGender() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Text(
+          'Gender',
+          style: kLabelStyle,
+        ),
+        SizedBox(height: 10.0),
+        Container(
+          alignment: Alignment.centerLeft,
+          decoration: kBoxDecorationStyle,
+          height: 60.0,
+          child: TextField(
+            keyboardType: TextInputType.emailAddress,
+            style: TextStyle(
+              color: Colors.white,
+              fontFamily: 'OpenSans',
+            ),
+            decoration: InputDecoration(
+              border: InputBorder.none,
+              contentPadding: EdgeInsets.only(top: 14.0),
+              prefixIcon: Icon(
+                Icons.people,
+                color: Colors.white,
+              ),
+              hintText: 'toggle button vekk',
+              hintStyle: kHintTextStyle,
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildLocation() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Text(
+          'Location',
+          style: kLabelStyle,
+        ),
+        SizedBox(height: 10.0),
+        Container(
+          alignment: Alignment.centerLeft,
+          decoration: kBoxDecorationStyle,
+          height: 60.0,
+          child: TextField(
+            keyboardType: TextInputType.emailAddress,
+            style: TextStyle(
+              color: Colors.white,
+              fontFamily: 'OpenSans',
+            ),
+            decoration: InputDecoration(
+              border: InputBorder.none,
+              contentPadding: EdgeInsets.only(top: 14.0),
+              prefixIcon: Icon(
+                Icons.location_on,
+                color: Colors.white,
+              ),
+              hintText: 'Enter your Location',
+              hintStyle: kHintTextStyle,
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildBloodGroup() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Text(
+          'Blood Group',
+          style: kLabelStyle,
+        ),
+        SizedBox(height: 10.0),
+        Container(
+          alignment: Alignment.centerLeft,
+          decoration: kBoxDecorationStyle,
+          height: 60.0,
+          child: TextField(
+            keyboardType: TextInputType.emailAddress,
+            style: TextStyle(
+              color: Colors.white,
+              fontFamily: 'OpenSans',
+            ),
+            decoration: InputDecoration(
+              border: InputBorder.none,
+              contentPadding: EdgeInsets.only(top: 14.0),
+              prefixIcon: Icon(
+                Icons.local_hospital,
+                color: Colors.white,
+              ),
+              hintText: 'ith dropdownList akanam',
               hintStyle: kHintTextStyle,
             ),
           ),
@@ -96,7 +165,6 @@ class _LoginScreenState extends State<LoginScreen> {
           decoration: kBoxDecorationStyle,
           height: 60.0,
           child: TextField(
-            controller: _passwordCtrl,
             obscureText: true,
             style: TextStyle(
               color: Colors.white,
@@ -118,44 +186,38 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  Widget _buildForgotPasswordBtn() {
-    return Container(
-      alignment: Alignment.centerRight,
-      child: FlatButton(
-        onPressed: () => print('Forgot Password Button Pressed'),
-        padding: EdgeInsets.only(right: 0.0),
-        child: Text(
-          'Forgot Password?',
+  Widget _buildRePassword() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Text(
+          'Re-enter Password',
           style: kLabelStyle,
         ),
-      ),
-    );
-  }
-
-  Widget _buildRememberMeCheckbox() {
-    return Container(
-      height: 20.0,
-      child: Row(
-        children: <Widget>[
-          Theme(
-            data: ThemeData(unselectedWidgetColor: Colors.white),
-            child: Checkbox(
-              value: _rememberMe,
-              checkColor: Colors.green,
-              activeColor: Colors.white,
-              onChanged: (value) {
-                setState(() {
-                  _rememberMe = value;
-                });
-              },
+        SizedBox(height: 10.0),
+        Container(
+          alignment: Alignment.centerLeft,
+          decoration: kBoxDecorationStyle,
+          height: 60.0,
+          child: TextField(
+            obscureText: true,
+            style: TextStyle(
+              color: Colors.white,
+              fontFamily: 'OpenSans',
+            ),
+            decoration: InputDecoration(
+              border: InputBorder.none,
+              contentPadding: EdgeInsets.only(top: 14.0),
+              prefixIcon: Icon(
+                Icons.lock,
+                color: Colors.white,
+              ),
+              hintText: 'Re-enter your Password',
+              hintStyle: kHintTextStyle,
             ),
           ),
-          Text(
-            'Remember me',
-            style: kLabelStyle,
-          ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 
@@ -165,16 +227,14 @@ class _LoginScreenState extends State<LoginScreen> {
       width: double.infinity,
       child: RaisedButton(
         elevation: 5.0,
-        onPressed: () {
-          logIn();
-        },
+        onPressed: () => print('sign up Button Pressed'),
         padding: EdgeInsets.all(15.0),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(30.0),
         ),
         color: Colors.white,
         child: Text(
-          'LOGIN',
+          'SIGN UP',
           style: TextStyle(
             color: Color(0xFF527DAA),
             letterSpacing: 1.5,
@@ -199,7 +259,7 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
         SizedBox(height: 20.0),
         Text(
-          'Sign in with',
+          'Sign up with',
           style: kLabelStyle,
         ),
       ],
@@ -237,9 +297,7 @@ class _LoginScreenState extends State<LoginScreen> {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
           _buildSocialBtn(
-            () {
-              googleSignIn();
-            },
+            () => print('Login with Google'),
             AssetImage(
               'assets/logos/google.jpg',
             ),
@@ -249,41 +307,10 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  Widget _buildSignupBtn() {
-    return GestureDetector(
-      onTap: () {
-        Navigator.of(context).pushNamed(SignUp.routeName);
-      },
-      child: RichText(
-        text: TextSpan(
-          children: [
-            TextSpan(
-              text: 'Don\'t have an Account? ',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 18.0,
-                fontWeight: FontWeight.w400,
-              ),
-            ),
-            TextSpan(
-              text: 'Sign Up',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 18.0,
-                fontWeight: FontWeight.bold,
-              ),
-              
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _load?Center(child: CircularProgressIndicator()): AnnotatedRegion<SystemUiOverlayStyle>(
+      body: AnnotatedRegion<SystemUiOverlayStyle>(
         value: SystemUiOverlayStyle.light,
         child: GestureDetector(
           onTap: () => FocusScope.of(context).unfocus(),
@@ -318,7 +345,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       Text(
-                        'Plasmo Sign In',
+                        'Plasmo Sign up',
                         style: TextStyle(
                           color: Colors.white38,
                           fontFamily: 'OpenSans',
@@ -327,17 +354,18 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       ),
                       SizedBox(height: 30.0),
-                      _buildEmailTF(),
+                      _buildName(),
+                      _buildGender(),
                       SizedBox(
                         height: 30.0,
                       ),
+                      _buildBloodGroup(),
+                      _buildLocation(),
                       _buildPasswordTF(),
-                      _buildForgotPasswordBtn(),
-                      _buildRememberMeCheckbox(),
+                      _buildRePassword(),
                       _buildLoginBtn(),
                       _buildSignInWithText(),
                       _buildSocialBtnRow(),
-                      _buildSignupBtn(),
                     ],
                   ),
                 ),

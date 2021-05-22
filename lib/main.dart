@@ -6,6 +6,7 @@ import 'package:plasmo/screens/bottom_navbar.dart';
 import 'package:plasmo/screens/donate_form.dart';
 import 'package:plasmo/screens/home_screen.dart';
 import 'package:plasmo/screens/login_screen.dart';
+import 'package:plasmo/screens/signup_screen.dart';
 import 'package:plasmo/screens/stories_screen.dart';
 import 'package:plasmo/screens/story_form.dart';
 import 'package:provider/provider.dart';
@@ -39,6 +40,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         routes: {
           LoginScreen.routeName: (ctx) => LoginScreen(),
+          SignUp.routeName:(ctx)=>SignUp(),
           BannerScreen.routeName: (ctx) => BannerScreen(),
           HomeScreen.routeName: (ctx) => HomeScreen(),
           DonateForm.routeName: (ctx) => DonateForm(),
