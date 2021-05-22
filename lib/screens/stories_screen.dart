@@ -21,6 +21,7 @@ class _StoriesScreenState extends State<StoriesScreen> {
   Widget build(BuildContext context) {
     final stories = Provider.of<Stories>(context).stories;
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         elevation: 0,
         title: Center(
