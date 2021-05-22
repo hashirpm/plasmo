@@ -1,7 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 abstract class AuthServices {
+ 
   static FirebaseAuth _auth = FirebaseAuth.instance;
   static GoogleSignIn _googleSignIn = GoogleSignIn();
 
@@ -15,6 +17,7 @@ abstract class AuthServices {
       }
    
   }
+ 
 
   // static Future signUp(String email, String password, String username) async {
   //   var authInfo = {"email": true};

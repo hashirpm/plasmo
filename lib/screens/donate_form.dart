@@ -103,6 +103,20 @@ class _DonateFormState extends State<DonateForm> {
             });
           },
         ),
+                actions: [
+          Padding(
+            padding: EdgeInsets.only(right: 20.0),
+            child: GestureDetector(
+              onTap: () {},
+              child: 
+              Icon(
+                Icons.person,
+                color: Colors.black,
+                size: 26.0,
+              ),
+            ),
+          ),
+        ],
         backgroundColor: Colors.white,
       ),
       body: Padding(
