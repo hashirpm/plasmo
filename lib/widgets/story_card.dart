@@ -70,24 +70,33 @@ class StoryCard extends StatelessWidget {
           ),
            Padding(
             padding: const EdgeInsets.fromLTRB(10, 5, 0, 8),
-            child: Row(
-              children: <Widget>[
-                FaIcon(
-                  FontAwesomeIcons.book,
-                  size: 16.0,
-                  color: Colors.orangeAccent,
-                ),
-                SizedBox(
-                  width: 5.0,
-                ),
-                Text(
-                  this.story,
-                  style: TextStyle(
-                    fontSize: 13,
-                    fontWeight: FontWeight.w600,
+            child: Container(
+ 
+                          child: Row(
+                children: <Widget>[
+                  FaIcon(
+                    FontAwesomeIcons.book,
+                    size: 16.0,
+                    color: Colors.orangeAccent,
                   ),
-                ),
-              ],
+                  SizedBox(
+                    width: 5.0,
+                  ),
+                  Flexible(
+                                      child: Text(
+                      this.story,
+                      softWrap: false,
+                        maxLines: 15,
+                       overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                        fontSize: 13,
+                        fontWeight: FontWeight.w600,
+                        
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         
