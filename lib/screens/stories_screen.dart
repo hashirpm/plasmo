@@ -21,31 +21,25 @@ class _StoriesScreenState extends State<StoriesScreen> {
   Widget build(BuildContext context) {
     final stories = Provider.of<Stories>(context).stories;
     return Scaffold(
+      floatingActionButton:FloatingActionButton.extended(onPressed: (){
+        Navigator.of(context).pushNamed(StoryForm.routeName);
+      }, label: Text('Story'),icon: Icon(Icons.add),
+    backgroundColor: Colors.greenAccent,),
+  floatingActionButtonLocation:    
+      FloatingActionButtonLocation.centerFloat,
       resizeToAvoidBottomInset: false,
-      appBar: AppBar(
-        elevation: 0,
-        title: Center(
-          child: Text(
-            'PLASMO',
-            style: TextStyle(
-              color: Colors.grey,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ),
-        backgroundColor: Colors.white,
-      ),
+    
       body:
            Container(
               padding: EdgeInsets.all(10),
               child: Column(
                 children: [
-                  TextButton(
-                    onPressed: () {
-                      Navigator.of(context).pushNamed(StoryForm.routeName);
-                    },
-                    child: Text('Share my Story'),
-                  ),
+                  // TextButton(
+                  //   onPressed: () {
+                  //     Navigator.of(context).pushNamed(StoryForm.routeName);
+                  //   },
+                  //   child: Text('Share my Story'),
+                  // ),
                   Expanded(
                     child: ListView.builder(
                       padding: const EdgeInsets.all(20.0),
