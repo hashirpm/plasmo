@@ -76,6 +76,7 @@ class _DonateFormState extends State<DonateForm> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+            backgroundColor: Colors.white,
       appBar: AppBar(
         elevation: 0,
         title: Center(

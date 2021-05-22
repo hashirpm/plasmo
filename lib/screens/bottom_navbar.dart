@@ -48,6 +48,7 @@ class _BottomNavbarState extends State<BottomNavbar> {
      StoriesScreen()
     ];
     return Scaffold(
+           backgroundColor: Colors.white, 
       appBar: AppBar(
         elevation: 0,
         title: Center(
@@ -83,7 +84,8 @@ class _BottomNavbarState extends State<BottomNavbar> {
       bottomNavigationBar: SizedBox(
         height: 58,
         child: BottomNavigationBar(
-          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+                backgroundColor: Colors.white,
+          //backgroundColor: Theme.of(context).scaffoldBackgroundColor,
           elevation: 0,
           unselectedItemColor: Colors.grey,
           selectedItemColor: Theme.of(context).accentColor,

@@ -21,6 +21,7 @@ class _StoriesScreenState extends State<StoriesScreen> {
   Widget build(BuildContext context) {
     final stories = Provider.of<Stories>(context).stories;
     return Scaffold(
+            backgroundColor: Colors.white,
       floatingActionButton:FloatingActionButton.extended(onPressed: (){
         Navigator.of(context).pushNamed(StoryForm.routeName);
       }, label: Text('Story'),icon: Icon(Icons.add),
