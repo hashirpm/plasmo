@@ -23,34 +23,13 @@ class _HomeScreenState extends State<HomeScreen> {
     print(donors.length);
     var ButtonStyles;
     return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        title: Center(
-          child: Text(
-            'PLASMO',
-            style: TextStyle(
-              color: Colors.grey,
-              fontFamily: 'Poppins',
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ),
-        leading: TextButton(
-          child: CircleAvatar(
-            backgroundColor: Colors.orange,
-            radius: 23,
-            child: Icon(Icons.login, color: Colors.black),
-          ),
-          onPressed: () async {
-            await AuthServices.signOut();
-            Navigator.of(context).pushReplacementNamed(LoginScreen.routeName);
-            setState(() {
-             
-            });
-          },
-        ),
-        backgroundColor: Colors.white,
-      ),
+      floatingActionButton:FloatingActionButton.extended(onPressed: (){
+        Navigator.of(context).pushNamed(DonateForm.routeName);
+      }, label: Text('Donate'),icon: Icon(Icons.add),
+    backgroundColor: Colors.greenAccent,),
+  floatingActionButtonLocation:    
+      FloatingActionButtonLocation.centerFloat,
+      
       body:
           // Container(
           //   padding: EdgeInsets.all(10),
@@ -73,16 +52,18 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Row(
-              children: [
-                TextButton(
-                  onPressed: () {
-                    Navigator.of(context).pushNamed(DonateForm.routeName);
-                  },
-                  child: Text('Donate'),
-                ),
-              ],
-            ),
+            
+            // Row(
+            //   children: [
+            //     TextButton(
+            //       onPressed: () {
+            //         Navigator.of(context).pushNamed(DonateForm.routeName);
+            //       },
+            //       child: Text('Donate'),
+            //     ),
+            //   ],
+            // ),
+            
             Expanded(
               child: GridView.builder(
                 padding: const EdgeInsets.all(20.0),

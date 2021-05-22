@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:plasmo/provider/donor_provider.dart';
 import 'package:plasmo/provider/story_provider.dart';
 import 'package:plasmo/screens/home_screen.dart';
+import 'package:plasmo/screens/login_screen.dart';
 import 'package:plasmo/screens/stories_screen.dart';
+import 'package:plasmo/services/firebase/auth_services.dart';
 import 'package:provider/provider.dart';
 
 class BottomNavbar extends StatefulWidget {
@@ -46,6 +48,34 @@ class _BottomNavbarState extends State<BottomNavbar> {
      StoriesScreen()
     ];
     return Scaffold(
+      appBar: AppBar(
+        elevation: 0,
+        title: Center(
+          child: Text(
+            'PLASMO',
+            style: TextStyle(
+              color: Colors.grey,
+              fontFamily: 'Poppins',
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
+        leading: TextButton(
+          child: CircleAvatar(
+            backgroundColor: Colors.orange,
+            radius: 23,
+            child: Icon(Icons.login, color: Colors.black),
+          ),
+          onPressed: () async {
+            await AuthServices.signOut();
+            Navigator.of(context).pushReplacementNamed(LoginScreen.routeName);
+            setState(() {
+             
+            });
+          },
+        ),
+        backgroundColor: Colors.white,
+      ),
       body: _load
           ? Center(child: CircularProgressIndicator()):
            
