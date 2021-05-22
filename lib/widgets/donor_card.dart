@@ -48,27 +48,6 @@ class DonorCard extends StatelessWidget {
                     //Image.asset(this.userDP),
                     ),
               ),
-              SizedBox(
-                width: 5.0,
-              ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(40, 0, 0, 0),
-                child: IconButton(
-                  icon: Icon(
-                    Icons.textsms,
-                    size: 26.0,
-                    color: Colors.deepOrange.shade400,
-                  ),
-                  onPressed: () async {
-                    final url = "whatsapp://send?phone=+91${this.userPhone}";
-                    if (await canLaunch(url)) {
-                      await launch(url);
-                    } else {
-                      throw 'Could not launch $url';
-                    }
-                  },
-                ),
-              )
             ],
           ),
           Padding(
@@ -153,11 +132,39 @@ class DonorCard extends StatelessWidget {
                 child: new IconButton(
                   iconSize: 19.0,
                   icon: new Icon(
-                    Icons.dialer_sip,
+                    Icons.phone,
                     color: Colors.white,
                   ),
                   onPressed: () async {
                     final url = "tel:${this.userPhone}";
+                    if (await canLaunch(url)) {
+                      await launch(url);
+                    } else {
+                      throw 'Could not launch $url';
+                    }
+                  },
+                ),
+              ),
+              SizedBox(
+                width:25
+              ),
+              Container(
+               
+                  height: 35.0,
+                width: 35.0,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(18.0),
+                  color: Colors.green,
+                ),
+       
+                child: IconButton(
+                  icon: FaIcon(
+                    FontAwesomeIcons.whatsapp,
+                    size: 19.0,
+                    color: Colors.white,
+                  ),
+                  onPressed: () async {
+                    final url = "whatsapp://send?phone=+91${this.userPhone}";
                     if (await canLaunch(url)) {
                       await launch(url);
                     } else {

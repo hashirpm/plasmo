@@ -23,6 +23,7 @@ class _HomeScreenState extends State<HomeScreen> {
     print(donors.length);
     var ButtonStyles;
     return Scaffold(
+            backgroundColor: Colors.white,
       floatingActionButton:FloatingActionButton.extended(onPressed: (){
         Navigator.of(context).pushNamed(DonateForm.routeName);
       }, label: Text('Donate'),icon: Icon(Icons.add),
