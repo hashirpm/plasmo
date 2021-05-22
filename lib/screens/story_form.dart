@@ -62,18 +62,16 @@ class _StoryFormState extends State<StoryForm> {
             ),
           ),
         ),
-        leading: TextButton(
+       leading: TextButton(
           child: CircleAvatar(
-            backgroundColor: Colors.orange,
+            backgroundColor: Colors.white,
             radius: 23,
-            child: Icon(Icons.login, color: Colors.black),
+            child: Icon(Icons.arrow_back, color: Colors.black),
           ),
           onPressed: () async {
             await AuthServices.signOut();
-            Navigator.of(context).pushReplacementNamed(LoginScreen.routeName);
-            setState(() {
-             
-            });
+            Navigator.of(context).pop();
+         
           },
         ),
                 actions: [
@@ -92,12 +90,28 @@ class _StoryFormState extends State<StoryForm> {
         ],
         backgroundColor: Colors.white,
       ),
-      body: Padding(
+      body: Container(
         padding: const EdgeInsets.all(16.0),
         child: Form(
           key: _form,
           child: ListView(
             children: <Widget>[
+                 SizedBox(
+              height:25
+            ),
+            Center(
+          child: Text(
+            'Share your Success Story',
+            style: TextStyle(
+              color: Colors.green[400],
+              fontFamily: 'Poppins',
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
+         SizedBox(
+              height:25
+            ),
               TextFormField(
                   decoration: InputDecoration(
                     border: InputBorder.none,

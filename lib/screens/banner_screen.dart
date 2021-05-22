@@ -32,7 +32,7 @@ class _BannerScreenState extends State<BannerScreen> {
         ),
         leading: TextButton(
           child: CircleAvatar(
-            backgroundColor: Colors.orange,
+            backgroundColor: Colors.white,
             radius: 23,
             child: Icon(Icons.login, color: Colors.black),
           ),

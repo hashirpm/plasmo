@@ -66,7 +66,7 @@ class _BottomNavbarState extends State<BottomNavbar> {
         ),
         leading: TextButton(
           child: CircleAvatar(
-            backgroundColor: Colors.orange,
+            backgroundColor: Colors.white,
             radius: 23,
             child: Icon(Icons.login, color: Colors.black),
           ),
