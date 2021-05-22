@@ -35,6 +35,19 @@ class _StoriesScreenState extends State<StoriesScreen> {
               padding: EdgeInsets.all(10),
               child: Column(
                 children: [
+                     SizedBox(
+              height:25
+            ),
+            Center(
+          child: Text(
+            'SUCCESS STORIES',
+            style: TextStyle(
+              color: Colors.green[400],
+              fontFamily: 'Poppins',
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
                   // TextButton(
                   //   onPressed: () {
                   //     Navigator.of(context).pushNamed(StoryForm.routeName);

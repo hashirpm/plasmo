@@ -53,6 +53,19 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
+            SizedBox(
+              height:25
+            ),
+            Center(
+          child: Text(
+            'PLASMA DONORS',
+            style: TextStyle(
+              color: Colors.green[400],
+              fontFamily: 'Poppins',
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
             
             // Row(
             //   children: [

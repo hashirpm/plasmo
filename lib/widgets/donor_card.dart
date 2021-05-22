@@ -15,7 +15,7 @@ class DonorCard extends StatelessWidget {
     this.userName,
     this.userPhone,
     this.userLocation,
-    //this.userDP,
+
     this.userBlood,
   });
 
