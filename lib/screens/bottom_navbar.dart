@@ -48,7 +48,7 @@ class _BottomNavbarState extends State<BottomNavbar> {
   Widget build(BuildContext context) {
 
 
-
+print("================BOTTOM================");
     List<Widget> widList = [HomeScreen(), StoriesScreen()];
     return Scaffold(
       backgroundColor: Colors.white,

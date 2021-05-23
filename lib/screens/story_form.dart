@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:plasmo/models/story_model.dart';
+import 'package:plasmo/screens/bottom_navbar.dart';
 import 'package:plasmo/screens/login_screen.dart';
 import 'package:plasmo/screens/stories_screen.dart';
 import 'package:plasmo/services/firebase/auth_services.dart';
@@ -33,7 +34,7 @@ class _StoryFormState extends State<StoryForm> {
             new ElevatedButton(
               onPressed: () {
                 Navigator.of(context)
-                    .pushReplacementNamed(StoriesScreen.routeName);
+                    .pushReplacementNamed(BottomNavbar.routeName);
                 // dismisses only the dialog and returns nothing
               },
               child: new Text('OK'),

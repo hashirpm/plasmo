@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:plasmo/models/donor_model.dart';
 import 'package:plasmo/provider/donor_provider.dart';
+import 'package:plasmo/screens/bottom_navbar.dart';
 import 'package:plasmo/screens/home_screen.dart';
 import 'package:plasmo/services/firebase/auth_services.dart';
 import 'package:provider/provider.dart';
@@ -40,7 +41,7 @@ class _DonateFormState extends State<DonateForm> {
           new ElevatedButton(
             onPressed: () {
               Navigator.of(context)
-                  .pushReplacementNamed(HomeScreen.routeName);
+                  .pushReplacementNamed(BottomNavbar.routeName);
                 // dismisses only the dialog and returns nothing
             },
             child: new Text('OK'),
