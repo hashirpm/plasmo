@@ -22,7 +22,18 @@ The person who wants to donate his/her plasma need to register and create his/he
  - Flutter
  - Figma
 
+## Demo
+
+![](./assets/images/readmeIMG/signin.jpg)
+![](./assets/images/readmeIMG/login.jpg)
+![](./assets/images/readmeIMG/home.jpg)
+![](./assets/images/readmeIMG/fdonate.jpg)
+![](./assets/images/readmeIMG/story.jpg)
+![](./assets/images/readmeIMG/fstory.jpg)
+
+
 ## Contributors
 
 [Abdul Adhil PK](https://adhilcodes.me)
+
 [Muhammed Hashir PM](https://hashirpm.github.io)
