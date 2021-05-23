@@ -15,10 +15,9 @@ class BottomNavbar extends StatefulWidget {
 }
 
 class _BottomNavbarState extends State<BottomNavbar> {
-
-
+  final FirebaseAuth _auth = FirebaseAuth.instance;
   var _load = false;
-
+  var user;
   int _selectedPage = 0;
   void onTabChangedListener(position) {
     setState(() {
@@ -44,11 +43,27 @@ class _BottomNavbarState extends State<BottomNavbar> {
     });
   }
 
+  userImg() async {
+    user = await _auth.currentUser();
+
+    if (this.user.photoUrl != null) {
+      print('truehere');
+      return this.user.photoUrl;
+    }
+
+    print('falsehere');
+    return false;
+    //{"res":false,"val":null};
+  }
+
+  getUserImg() {
+    _auth.currentUser().then((res) {
+      return res.photoUrl;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-
-
-print("================BOTTOM================");
     List<Widget> widList = [HomeScreen(), StoriesScreen()];
     return Scaffold(
       backgroundColor: Colors.white,
@@ -81,11 +96,26 @@ print("================BOTTOM================");
             padding: EdgeInsets.only(right: 20.0),
             child: GestureDetector(
               onTap: () {},
-              child: 
-              Icon(
-                Icons.person,
-                color: Colors.black,
-                size: 26.0,
+              child: FutureBuilder(
+                future: userImg(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.done) {
+                    return snapshot.data == false
+                        ? Icon(
+                            Icons.person,
+                            color: Colors.black,
+                            size: 26.0,
+                          )
+                        : CircleAvatar(
+                            backgroundImage: NetworkImage(snapshot.data));
+                  }
+
+                  return Icon(
+                    Icons.person,
+                    color: Colors.black,
+                    size: 26.0,
+                  );
+                },
               ),
             ),
           ),

@@ -38,6 +38,13 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  flutter_native_splash: ^1.1.8+4
+
+flutter_native_splash:
+  background_image: "assets/images/splash.png"
+  android_gravity: center
+  ios_content_mode: center
+  web: false
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -56,6 +63,7 @@ flutter:
    - assets/logos/facebook.jpg
    - assets/logos/google.jpg
    - assets/images/covid-banner.png
+   - assets/images/splash.png
    
   # assets:
   #   - images/a_dot_burr.jpeg

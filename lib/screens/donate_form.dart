@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:plasmo/models/donor_model.dart';
 import 'package:plasmo/provider/donor_provider.dart';
@@ -15,6 +16,8 @@ class DonateForm extends StatefulWidget {
 }
 
 class _DonateFormState extends State<DonateForm> {
+    final FirebaseAuth _auth = FirebaseAuth.instance;
+    var user;
   //final _nameFocusNode = FocusNode();
   final _bloodFocusNode = FocusNode();
   final _locationFocusNode = FocusNode();
@@ -30,6 +33,24 @@ class _DonateFormState extends State<DonateForm> {
     //   print(_setDonor.userPhone);
     //    print(_setDonor.userLocation);
     try{
+         if (_setDonor.userName.isEmpty || _setDonor.userBlood.isEmpty||_setDonor.userPhone.isEmpty||_setDonor.userLocation.isEmpty){
+      return showDialog(
+        context: context,
+        builder: (context) => new AlertDialog(
+          title: new Text('Sorry'),
+          content: Text('The fields are empty'),
+          actions: <Widget>[
+            new ElevatedButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+                // dismisses only the dialog and returns nothing
+              },
+              child: new Text('OK'),
+            ),
+          ],
+        ),
+      );
+      }
       await Provider.of<Donors>(context,listen: false).addDonor(_setDonor);
       await showDialog(
       context: context,
@@ -67,6 +88,25 @@ class _DonateFormState extends State<DonateForm> {
     }
     
   }
+   userImg() async {
+    user = await _auth.currentUser();
+
+    if (this.user.photoUrl != null) {
+      print('truehere');
+      return this.user.photoUrl;
+    }
+
+    print('falsehere');
+    return false;
+    //{"res":false,"val":null};
+  }
+
+  getUserImg() {
+    _auth.currentUser().then((res) {
+      return res.photoUrl;
+    });
+  }
+
    @override
   void dispose() {
     _bloodFocusNode.dispose();
@@ -108,10 +148,26 @@ class _DonateFormState extends State<DonateForm> {
             child: GestureDetector(
               onTap: () {},
               child: 
-              Icon(
-                Icons.person,
-                color: Colors.black,
-                size: 26.0,
+              FutureBuilder(
+                future: userImg(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.done) {
+                    return snapshot.data == false
+                        ? Icon(
+                            Icons.person,
+                            color: Colors.black,
+                            size: 26.0,
+                          )
+                        : CircleAvatar(
+                            backgroundImage: NetworkImage(snapshot.data));
+                  }
+
+                  return Icon(
+                    Icons.person,
+                    color: Colors.black,
+                    size: 26.0,
+                  );
+                },
               ),
             ),
           ),
