@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:plasmo/models/story_model.dart';
 import 'package:plasmo/screens/bottom_navbar.dart';
@@ -14,6 +15,8 @@ class StoryForm extends StatefulWidget {
 }
 
 class _StoryFormState extends State<StoryForm> {
+   final FirebaseAuth _auth = FirebaseAuth.instance;
+    var user;
   final _storyFocusNode = FocusNode();
 
   final _form = GlobalKey<FormState>();
@@ -65,7 +68,24 @@ class _StoryFormState extends State<StoryForm> {
       print(e);
     }
   }
+   userImg() async {
+    user = await _auth.currentUser();
 
+    if (this.user.photoUrl != null) {
+      print('truehere');
+      return this.user.photoUrl;
+    }
+
+    print('falsehere');
+    return false;
+    //{"res":false,"val":null};
+  }
+
+  getUserImg() {
+    _auth.currentUser().then((res) {
+      return res.photoUrl;
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -98,10 +118,26 @@ class _StoryFormState extends State<StoryForm> {
             padding: EdgeInsets.only(right: 20.0),
             child: GestureDetector(
               onTap: () {},
-              child: Icon(
-                Icons.person,
-                color: Colors.black,
-                size: 26.0,
+              child: FutureBuilder(
+                future: userImg(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.done) {
+                    return snapshot.data == false
+                        ? Icon(
+                            Icons.person,
+                            color: Colors.black,
+                            size: 26.0,
+                          )
+                        : CircleAvatar(
+                            backgroundImage: NetworkImage(snapshot.data));
+                  }
+
+                  return Icon(
+                    Icons.person,
+                    color: Colors.black,
+                    size: 26.0,
+                  );
+                },
               ),
             ),
           ),

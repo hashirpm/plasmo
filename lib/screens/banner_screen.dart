@@ -75,7 +75,8 @@ class _BannerScreenState extends State<BannerScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [Image(
         
-    
+    height:400,
+    width: 400,
                             
                 image: AssetImage('assets/images/covid-banner.png'),
 
