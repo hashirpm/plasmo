@@ -30,6 +30,24 @@ class _DonateFormState extends State<DonateForm> {
     //   print(_setDonor.userPhone);
     //    print(_setDonor.userLocation);
     try{
+         if (_setDonor.userName.isEmpty || _setDonor.userBlood.isEmpty||_setDonor.userPhone.isEmpty||_setDonor.userLocation.isEmpty){
+      return showDialog(
+        context: context,
+        builder: (context) => new AlertDialog(
+          title: new Text('Sorry'),
+          content: Text('The fields are empty'),
+          actions: <Widget>[
+            new ElevatedButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+                // dismisses only the dialog and returns nothing
+              },
+              child: new Text('OK'),
+            ),
+          ],
+        ),
+      );
+      }
       await Provider.of<Donors>(context,listen: false).addDonor(_setDonor);
       await showDialog(
       context: context,

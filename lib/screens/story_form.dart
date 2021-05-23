@@ -24,6 +24,25 @@ class _StoryFormState extends State<StoryForm> {
     print(_setStory.name);
     print(_setStory.story);
     try {
+      if (_setStory.name.isEmpty || _setStory.story.isEmpty){
+      return showDialog(
+        context: context,
+        builder: (context) => new AlertDialog(
+          title: new Text('Sorry'),
+          content: Text('The fields are empty'),
+          actions: <Widget>[
+            new ElevatedButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+                // dismisses only the dialog and returns nothing
+              },
+              child: new Text('OK'),
+            ),
+          ],
+        ),
+      );
+      }
+
       await Provider.of<Stories>(context, listen: false).addStory(_setStory);
       await showDialog(
         context: context,
@@ -50,7 +69,7 @@ class _StoryFormState extends State<StoryForm> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-            backgroundColor: Colors.white,
+      backgroundColor: Colors.white,
       appBar: AppBar(
         elevation: 0,
         title: Center(
@@ -63,7 +82,7 @@ class _StoryFormState extends State<StoryForm> {
             ),
           ),
         ),
-       leading: TextButton(
+        leading: TextButton(
           child: CircleAvatar(
             backgroundColor: Colors.white,
             radius: 23,
@@ -72,16 +91,14 @@ class _StoryFormState extends State<StoryForm> {
           onPressed: () async {
             await AuthServices.signOut();
             Navigator.of(context).pop();
-         
           },
         ),
-                actions: [
+        actions: [
           Padding(
             padding: EdgeInsets.only(right: 20.0),
             child: GestureDetector(
               onTap: () {},
-              child: 
-              Icon(
+              child: Icon(
                 Icons.person,
                 color: Colors.black,
                 size: 26.0,
@@ -97,22 +114,18 @@ class _StoryFormState extends State<StoryForm> {
           key: _form,
           child: ListView(
             children: <Widget>[
-                 SizedBox(
-              height:25
-            ),
-            Center(
-          child: Text(
-            'Share your Success Story',
-            style: TextStyle(
-              color: Colors.green[400],
-              fontFamily: 'Poppins',
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ),
-         SizedBox(
-              height:25
-            ),
+              SizedBox(height: 25),
+              Center(
+                child: Text(
+                  'Share your Success Story',
+                  style: TextStyle(
+                    color: Colors.green[400],
+                    fontFamily: 'Poppins',
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              SizedBox(height: 25),
               TextFormField(
                   decoration: InputDecoration(
                     border: InputBorder.none,
